@@ -1,0 +1,297 @@
+:root {
+  --ink: #1c1c1e;
+  --ink-soft: #4a4a4d;
+  --rule: #ddd8d0;
+  --paper: #fbfaf8;
+  --paper-raised: #ffffff;
+  --accent: #6e2a2a;
+  --accent-soft: #8a4a4a;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --max: 780px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece9e4;
+    --ink-soft: #b9b5ad;
+    --rule: #3a3733;
+    --paper: #171614;
+    --paper-raised: #201f1c;
+    --accent: #d99a9a;
+    --accent-soft: #c47f7f;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #ece9e4;
+  --ink-soft: #b9b5ad;
+  --rule: #3a3733;
+  --paper: #171614;
+  --paper-raised: #201f1c;
+  --accent: #d99a9a;
+  --accent-soft: #c47f7f;
+}
+:root[data-theme="light"] {
+  --ink: #1c1c1e;
+  --ink-soft: #4a4a4d;
+  --rule: #ddd8d0;
+  --paper: #fbfaf8;
+  --paper-raised: #ffffff;
+  --accent: #6e2a2a;
+  --accent-soft: #8a4a4a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Header / Nav ---- */
+header.site {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.nav-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+nav.site-nav {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+nav.site-nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+nav.site-nav a:hover { color: var(--accent); }
+
+/* ---- Hero ---- */
+.hero {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--rule);
+}
+.hero-inner {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+.hero-photo {
+  flex: 0 0 auto;
+}
+.hero-photo img {
+  width: 160px;
+  height: 160px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.hero-text h1 {
+  font-size: 1.9rem;
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+.hero-text .title-line {
+  font-family: var(--sans);
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin: 0 0 4px;
+}
+.hero-text .title-line + .title-line { margin-top: 2px; }
+.hero-links {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .hero-inner { flex-direction: column; align-items: flex-start; text-align: left; }
+}
+
+/* ---- Sections ---- */
+section {
+  padding: 44px 0;
+  border-bottom: 1px solid var(--rule);
+}
+section:last-of-type { border-bottom: none; }
+
+h2.section-title {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin: 0 0 22px;
+  font-weight: 600;
+}
+
+.bio p { margin: 0 0 14px; }
+
+/* research tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.tag {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 4px 12px;
+  background: var(--paper-raised);
+}
+
+/* publication list */
+.pub-group { margin-bottom: 6px; }
+ol.pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: pub;
+}
+ol.pub-list li {
+  counter-increment: pub;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 2em 1fr;
+  gap: 4px;
+}
+ol.pub-list li:first-child { border-top: none; }
+ol.pub-list li::before {
+  content: counter(pub) ".";
+  font-family: var(--sans);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  padding-top: 2px;
+}
+.pub-cite .pub-title { color: var(--ink); }
+.pub-cite .pub-venue { font-style: italic; color: var(--ink-soft); }
+.pub-cite .pub-link {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  margin-left: 2px;
+}
+
+/* teaching table */
+table.teaching {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+table.teaching th {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-align: left;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 600;
+}
+table.teaching td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+table.teaching tr:last-child td { border-bottom: none; }
+.course-code {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.level-badge {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+/* grants */
+ul.grants {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.grants li {
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+}
+ul.grants li:first-child { border-top: none; }
+.grant-amount {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--accent-soft);
+}
+
+/* doctoral advising */
+.advisee {
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 4em 1fr;
+  gap: 0 16px;
+}
+.advisee:first-child { border-top: none; }
+.advisee .year {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  padding-top: 1px;
+}
+.advisee-body .name { font-weight: 600; }
+.advisee-body .placement { color: var(--ink-soft); margin-top: 2px; }
+.advisee-body .paper {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+footer.site {
+  padding: 30px 0 50px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
